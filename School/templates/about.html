@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}?{% now 'U' %}">
+<script src="{% static '' %}js/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+<div class="cont">
+    <div class="title">
+        <h1>Foundation Program <br> Portfolio Project</h1>
+    </div>
+    <div class="detail">
+        <p>This system is mostly video based teaching system developed using one of the best python web framework called
+            Django. For the students attending like ALX school will help by providing lecture video produced by experts
+            or mentors on specific concepts to tackle the challenges they face during their projects.</p>
+        <p>ALX is the best online school I have ever seen. The approach is learning by doing, and it is a hard way, however
+            it will enrich you to become complete package on the area. They will give you a project with the deadline
+            and give you some reference to tackle the project. However, it will request you to refer more document and
+            this will help you to increase your knowledge in the area. If you don’t know any coding, but you have time to
+            invest and have interest on programming, then you will be software engineer with in only 12 months. If you
+            want you to join, just click the link <a href="https://www.alxafrica.com/" target="_blank">hear</a> and find
+            what you want. </p>
+    </div>
+</div>
+{% endblock %}
