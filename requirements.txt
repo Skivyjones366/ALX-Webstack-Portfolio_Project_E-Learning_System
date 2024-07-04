@@ -1,0 +1,12 @@
+ sudo apt install python3-pip
+
+
+django
+sudo apt-get install mysql-server
+pip install django-ckeditor
+pip install mysqlclient # run 'sudo apt-get install python3-dev default-libmysqlclient-dev build-essential' error - 'python setup.py egg_info did not run successfully. /bin/sh: 1: mysql_config: not found
+      /bin/sh: 1: mariadb_config: not found
+      /bin/sh: 1: mysql_config: not found
+      Traceback (most recent call last):'
+      
+      
