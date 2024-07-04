@@ -1,0 +1,25 @@
+.search {
+    width: unset;
+    padding: 3px 5px;
+    border-radius: unset;
+    border: unset;
+    margin: 15px;
+}
+.search input {
+    border-radius: 4px;
+    border: ridge 1px gray;
+    margin: 15px 0 15px 15px;
+}
+.search form {
+    display: grid;
+    grid-template-columns: 16pc 2pc;
+}
+.search button {
+    margin: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+}
+.cont {
+  margin: 0 30px 30px 30px;
+}

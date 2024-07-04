@@ -1,0 +1,63 @@
+.form-cntr{
+}
+.form-cntr h3{
+    padding-left: 30%;
+}
+.form-cntr form {
+    padding: 30px 20px;
+    display: grid;
+}
+.form-cntr form div {
+    display: grid;
+    margin: 5px 10px;
+    align-content: center;
+}
+.form-cntr form div label {
+    width: 100px;
+    align-self: center;
+}
+.form-cntr form div input, .form-cntr form div  select {
+    width: 290px;
+    padding: 6px;
+    border-radius: 5px;
+    border: ridge 1px gray;
+    background-color: white;
+}
+input[id=id_cover] {
+    padding: 3px 6px !important;
+}
+.form-cntr form div  select {
+    width: 304px;
+}
+.form-cntr form div label span {
+    margin-left: 5px;
+}
+div[id=div_id_description], div[id=div_id_detail] {
+    display: grid !important;
+}
+div[id=div_id_cover] .controls {
+    display: block;
+}
+div[id=div_id_cover] .controls a {
+    margin: 5px 0px;
+}
+div[id=div_id_cover] .controls input {
+    margin: 5px 2px;
+}
+
+}
+.controls, .django-ckeditor-widget {
+    margin: 0 !important;
+}
+.cke_id_description div, .cke_inner {
+    display: block !important;
+}
+.submit {
+    width: fit-content;
+    position: relative;
+    left: 83%;
+    padding: 5px 30px;
+}
+.help-block {
+    display: none;
+}

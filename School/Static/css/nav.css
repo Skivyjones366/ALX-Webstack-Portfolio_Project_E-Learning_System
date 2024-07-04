@@ -1,0 +1,149 @@
+body {
+    background-image: url();
+    background-size: 100%;
+    background-repeat: inherit;
+}
+.logo {
+  position: relative;
+  width: 3.4pc;
+  border-radius: 40px;
+  margin: 5px 10px 29px 7px;
+}
+.menu{
+    position: absolute;
+    top: 20px;
+    right: 23px;
+    height: 53px;
+    width: 32px;
+    cursor: pointer;
+}
+nav{
+    display: none;
+}
+nav.menu-btn{
+    display: block;
+}
+.menu.menu-btn {
+    display: none;
+}
+.close{
+    float: right;
+    height: 45px;
+    width: 38px;
+    cursor: pointer;
+    background: #f0eded;
+}
+nav{
+    position: fixed;
+    z-index: 999;
+    width: 35%;
+    right: 5px;
+    top: 7px;
+    background: #ebe6e6ba;
+    height: 94vh;
+    padding: 1em;
+    border-radius: 20px;
+}
+.nav-container {
+    position: relative;
+    top: 3pc;
+    left: -1pc;
+}
+
+ul li {
+    padding: 5px;
+    list-style: none;
+}
+ul li a {
+    text-decoration: none;
+    color: #1c1a1adb;
+}
+ul li a:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #0aabe9e8;
+}
+.user {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #1c1a1adb;
+}
+.account {
+    padding-left: 1pc;
+}
+
+
+@media only screen and (min-width: 600px){
+    body {
+        background-image: url();
+        background-size: 100%;
+        background-repeat: inherit;
+    }
+    .menu, .close {
+        display: none;
+    }
+    nav {
+        position: relative;
+        display: unset;
+        margin-top: unset;
+        right: unset;
+        top: unset;
+        background: none;
+        width: unset;
+        padding: unset;
+    }
+    .logo {
+      position: absolute;
+      width: 3.4pc;
+      border-radius: 40px;
+    }
+    .nav-container {
+        display: flex;
+        flex-direction: row-reverse;
+        align-content: center;
+        justify-content: flex-start;
+        align-items: center;
+        position: initial;
+
+    }
+    .nav-container ul {
+      display: flex;
+      margin-right: 5%;
+    }
+
+    .nav-container li {
+      list-style-type: none;
+      padding: 2px 15px;
+
+    }
+    .nav-container li:hover {
+      text-decoration: underline;
+      color: #0aabe9e8;
+      font-weight: bold;
+    }
+    .nav-container a {
+    color: inherit;
+    }
+    .menu {
+      position: absolute;
+      width: 2.5pc;
+      border-radius: 11px;
+    }
+    .user {
+        text-transform: capitalize;
+        text-decoration: none;
+        color: #1c1a1adb;
+    }
+    .account {
+        display: none;
+        position: absolute;
+        right: 30px;
+        top: 60px;
+        background-color: white;
+        border-radius: 25px;
+}
+    }
+    .li-account {
+        cursor: pointer;
+    }
+}

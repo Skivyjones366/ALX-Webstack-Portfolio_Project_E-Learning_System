@@ -1,0 +1,42 @@
+.contacts {
+    background-image: url(/static/img/contact.png);
+    background-size: 100% 100%;
+    border-radius: 25px;
+    margin-top: 4pc;
+}
+.contacts h1 {
+    text-align-last: center;
+    background-color: #d3d1c6ba;
+    color: antiquewhite;
+    border-radius: 24px 24px 0px 0px;
+}
+.bio {
+    margin-top: 7pc;
+    margin-left: 14px;
+}
+.bio p {
+    background-color: #7a54367d;
+    width: 80%;
+    border-radius: 18px;
+    padding: 10px 2px 1px 10px;
+    color: white;
+    text-align: justify;
+}
+.bio lable {
+    font-weight: bolder;
+    margin-left: 15px;
+    font-size: 28px;
+    color: white;
+}
+.contact-list {
+    display: grid;
+    margin-left: 4pc;
+    background-color: #e7e4da7a;
+    width: 50%;
+    border-radius: 10px;
+    padding: 10px;
+    padding-left: 44px;
+}
+.cont lable {
+    padding-left: 25px;
+}
