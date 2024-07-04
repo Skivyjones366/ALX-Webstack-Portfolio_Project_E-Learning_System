@@ -1,0 +1,42 @@
+.cont {
+    margin: 50px;
+    background-image: url(/static/img/about.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 40px;
+}
+.title {
+    background-image: url(/static/img/alx.png);
+    background-position: center;
+    height: 20em;
+    background-repeat: no-repeat;
+    text-align: center;
+    border-radius: 21%;
+    background-size: 100%;
+    width: 39pc;
+    margin-left: 25%;
+}
+.title h1 {
+    position: relative;
+    top: 13pc;
+}
+.detail {
+    padding: 30px;
+}
+.detail p {
+    background-color: #03131ad6;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+}
+.detail a {
+    color: #faff1f ;
+    text-decoration: none;
+}
+.detail a:hover {
+    color: #72f101;
+    text-decoration: underline;
+}
