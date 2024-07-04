@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/category.css' %}?{% now 'U' %}">
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="left-panel">
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {% if user.is_staff %}
+            <a href="{% url 'addCourse' %}" class="add_course">Add Course</a>
+            {% endif %}
+            <input class="search" type="text" name="search-q" placeholder="Search by Any">
+            <h4>Category {{values}}</h4>
+            {% for cat in category %}
+            <div class="checkboxes">
+                <input class="check-list" type="checkbox" id="{{cat.id}}" name="{{cat.id}}" value="{{cat.id}}">
+                <label for="{{cat.id}}"> {{cat.cat_name}} </label>
+            </div><!-- checkboxes -->
+            {% endfor %}
+            <input type="hidden" id="checked" name="keyword">
+            <input class="filter" type="submit" value="Filter">
+        </form>
+    </div> <!-- left-panel -->
+
+    <div class="right-pannel">
+        {% for c in courses %}
+        <div class="course">
+            <a href="{% url 'courseDetail' c.id %}"><img src="{{c.cover.url}}" alt=""/></a>
+            <div class="c-title">
+                <a href="{% url 'courseDetail' c.id %}">{% if c.title %} <h6>{{c.title}}</h6>{% endif %}</a>
+                <a href="{% url 'courseDetail' c.id %}">
+                    <div class="hr-rvw">
+                        {% if c.duration %}
+                        <label class="hour">{{c.duration}}</label>
+                        {% endif %}
+                        {% if c.title %}
+                        <label class="review">4 review</label>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+        </div><!-- course -->
+        {% endfor %}
+    </div> <!-- right-panel -->
+
+</div> <!-- container -->
+
+{% endblock %}
+
+{% block footer %}
+
+<script>
+$(document).ready(function(){
+  $('.check-list').click(() => {
+    var vals="";
+    $('.check-list:checked').each(function(){
+      vals += $(this).val()+','
+    });
+    $('#checked').val(vals);
+  });
+});
+
+
+</script>
+{% endblock %}
+
+

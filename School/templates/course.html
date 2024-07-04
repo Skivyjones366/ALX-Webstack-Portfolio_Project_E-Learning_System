@@ -1,0 +1,199 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {% for c in course %} {{c.title}} {% endfor %}{% endblock %}
+
+{% block head  %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static '' %}css/course.css?{% now 'U' %}"/>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+
+<div>
+    {% for c in course %}
+    <div class="title">
+        <h2 class="c-title">{{c.title}}</h2>
+        {% if user.is_staff %}
+        <a href="{% url 'editCourse' c.id %}"><img src="{% static 'img/edit.svg' %}"></a>
+        {% endif %}
+    </div>
+
+    <div class="container">
+        <div class="l-section">
+            <div class="v-large">
+                <video id="video-l" class="{% for cnt in content %}video-l{{cnt.id}} {%endfor%}" controls>
+                    <source class="src-large" id="" src="">
+                    Your browser does not support the video tag
+                </video>
+            </div> <!-- v-large-->
+
+            <div class="tab-cont">
+                <div class="tab">
+                    {% if user.is_staff %}
+                    <button class="tablinks" onclick="openTab(event, 'manage-course')" id="default">Manage Course
+                    </button>
+                    {% endif %}
+                    <button class="tablinks" onclick="openTab(event, 'crs-dtl')" {% if not user.is_staff %} id="default" {% endif %}>Course Detail</button>
+                    <button class="tablinks" onclick="openTab(event, 'references')">References</button>
+                </div>
+                <div class="tabcontent" id="manage-course">
+                    <div class="form-col">
+                        <div>
+                            <hr>
+                            <form method="POST" action="{% url 'addReference' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="ref-form">
+                                    <h6>Add Reference</h6>
+                                    <input type="hidden" name="course" value="{{c.id}}">
+                                    <input type="text" name="name" placeholder="Name of reference">
+                                    <input type="text" name="description" placeholder="Description of reference">
+                                    <input type="file" name="file">
+                                    <input type="submit" value="Add Reference"/>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div>
+                            <hr>
+                            <form method="POST" action="{% url 'addModule' %}">
+                                {% csrf_token %}
+                                <div class="mo-form">
+                                    <h6>Module</h6>
+                                    <input type="hidden" name="course" value="{{c.id}}"/>
+                                    <input type="text" name="title" placeholder="Title of the module"/>
+                                    <input type="text" name="duration" placeholder="Duration to take the module"/>
+                                    <input type="submit" value="Add Module"/>
+                                </div>
+                            </form>
+                        </div>
+                        <div>
+                            <hr>
+                            <form method="POST" action="{% url 'addContent' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="cont-form">
+                                    <h6>Add Content</h6>
+                                    <select name="module">
+                                        <option>Select the module</option>
+                                        <!-- to iterate list of module available -->
+                                        {% for m in module %}
+                                        <option value="{{m.id}}">{{m.title}}</option>
+                                        {% endfor %} <!-- for module add content-->
+                                    </select>
+                                    <input type="text" name="name"/>
+                                    <input type="file" name="file"/>
+                                    <input type="submit" value="Add Content"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabcontent clc-detail" id="crs-dtl">
+                    {{ c.description|safe }}
+                </div>
+                <div class="tabcontent" id="references">
+                    <table class="ref">
+                        <tr>
+                            <th>Item</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                        {% for r in reference %}
+                        <tr>
+                            <td>{{ forloop.counter}}</td>
+                            <td><a href="{{ r.file.url }}" target='_blank'>{{ r.name}}</a></td>
+                            <td>{% if r.description %} {{ r.description}} {% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </div>
+            </div><!-- tab-cont -->
+        </div><!-- l-section -->
+
+        <div class="r-section">
+            <h3>Course Content</h3>
+            {% for m in module %}
+            <div class="module">
+                <div class="module-title">
+                    <h5>{{m.title}}</h5><span id="module{{m.id}}">&#8964;</span>
+                </div>
+                {% for cnt in content %}
+                {% if cnt.module.id == m.id %}
+                {% if cnt.file %}
+
+                <div class="content" id="content{{cnt.id}}">
+                    <video width="50px">
+                        <source src="{{cnt.file.url}}">
+                    </video>
+                    {% endif %} <!-- for check video file -->
+                    <lable>{{cnt.name}}</lable>
+                    <input type="checkbox" id="taken-m{{cnt.id}}">
+                </div> <!-- content -->
+                {% endif %}
+                {% endfor %} <!-- for content -->
+            </div><!-- module -->
+            {% endfor %} <!-- for module -->
+        </div><!-- r-section -->
+        {% endfor %} <!-- for course -->
+    </div><!-- container-->
+</div>
+
+
+<div>
+
+
+</div>
+
+{% endblock %}
+
+{% block footer %}
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("default").click();
+</script>
+
+<script>
+    {% for m in module %}
+    {% for cnt in content %}
+    {% if cnt.module.id == m.id %}
+    {% if cnt.file %}
+    $(document).ready(() => {
+        {% if forloop.first %}
+            $("#video-l").attr("src", "{{cnt.file.url}}");
+        {% endif %}
+        $("#module{{m.id}}").click(() => {
+            $("#content{{cnt.id}}").slideToggle("fast");
+        });
+        $("#content{{cnt.id}}").click(() => {
+            $(".video-l{{cnt.id}}").attr("src", "{{cnt.file.url}}");
+            $('.video-l{{cnt.id}}').attr('id', 'video-l{{cnt.id}}');
+        });
+        $('#video-l{{cnt.id}}').on('ended', () => {
+            $('#taken-m{{cnt.id}}').prop('checked', true);
+         });
+    });
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+</script>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static '' %}css/courseDetail.css?{% now 'U' %}"/>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+
+<div>
+
+    {% for c in course %}
+    <div class="title">
+        <h2 class="c-title">{{c.title}}</h2>
+        {% if user.is_staff %}
+        <a href="{% url 'editCourse' c.id %}"><img src="{% static 'img/edit.svg' %}"></a>
+        {% endif %}
+    </div>
+
+
+    <div class="container">
+        <form method="POST" action="{% url 'courseDetail' c.id %}">{% csrf_token %}
+            <div class="erol-form">
+                <select name="user" required id="id_user">
+                    {% if user.is_authenticated %}
+                    <option value="{{user.id}}" selected>{{user.id}}</option>
+                    {% endif %}
+                </select>
+                <select name="course" id="id_course">
+                    <option value="{{ c.id }}" selected>{{ c.id }}</option>
+                </select>
+            </div>
+            <input id="enrol" class="enrol" type="submit" value="Enrol Now">
+        </form>
+        <div class="section">
+            <div class="v-large">
+                <video id="video-l{{cnt.id}}" controls autoplay>
+                    {% if c.intro %}
+                    <source src="{{ c.intro.url }}">
+                    {% endif %}
+                    Your browser does not support the video tag
+                </video>
+            </div> <!-- v-large-->
+            <div class="r-section">
+                {{ c.description|safe }}
+            </div><!-- r-section -->
+        </div><!-- l-section -->
+
+        <div class="tab-cont">
+            <div class="tab">
+                <button class="tablinks" onclick="openTab(event, 'crs-dtl')" id="default">Course Detail</button>
+                <button class="tablinks" onclick="openTab(event, 'references')">Available References</button>
+            </div>
+
+            <div class="tabcontent clc-detail" id="crs-dtl">
+                {{ c.detail|safe }}
+            </div>
+            <div class="tabcontent" id="references">
+                <table class="ref">
+                    <tr>
+                        <th>Item</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                    {% for r in reference %}
+                    <tr>
+                        <td>{{ forloop.counter}}</td>
+                        <td>{{ r.name}}</td>
+                        <td>{% if r.description %} {{ r.description}} {% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </div>
+        </div><!-- tab-cont -->
+
+        {% endfor %} <!-- for course -->
+    </div><!-- container-->
+
+</div>
+
+
+{% endblock %}
+
+{% block footer %}
+<script>
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("default").click();
+</script>
+<script>
+    {% if not user.is_authenticated %}
+    $(document).ready(() => {
+        $('#enrol').click(() => {
+            alert('Please login before enrol.');
+        });
+    });
+    {% endif %}
+</script>
+
+{% endblock %}

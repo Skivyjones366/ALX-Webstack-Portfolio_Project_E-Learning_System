@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/my_account.css' %}?{% now 'U' %}">
+<script src="{% static '' %}js/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for m in my %}
+    <div>
+        {% if m.profile_picture %} <img width="150px" src="{{m.profile_picture.url}}">
+        {% endif %}
+    </div>
+    <div><h6 class="key">User Name:</h6><h6 class="value"> {{m.user.username}}</h6></div>
+    <div><h6 class="key">First name:</h6><h6 class="value"> {{m.user.first_name}}</h6></div>
+    <div><h6 class="key">Last name:</h6><h6 class="value"> {{m.user.last_name}}</h6></div>
+    <div><h6 class="key">Phone:</h6><h6 class="value"> {{m.phone}}</h6></div>
+    <div><h6 class="key">Email Address:</h6><h6 class="value"> {{m.user.email}}</h6></div>
+    <div><h6 class="key">Is Active:</h6><h6 class="value"> {{m.user.is_active}}</h6></div>
+    <div><h6 class="key">Address:</h6><h6 class="value"> {{m.address}}</h6></div>
+    <div><h6 class="key">Date joined:</h6><h6 class="value"> {{m.user.date_joined}}</h6></div>
+    {% endfor %}
+</div>
+{% endblock %}

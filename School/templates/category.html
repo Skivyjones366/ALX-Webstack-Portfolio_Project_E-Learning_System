@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HTML, CSS and JavaScript demo</title>
+<link rel="stylesheet" href="category.css" />
+</head>
+<body>
+<div class="container">
+    
+    <div class="left-pannel">
+      <h4>Category</h4>
+      <div class="checkboxs">
+        <input type="checkbox" id="ch1" name="ch1" value="ch1">
+        <label for="ch1"> categery 1 </label><br>
+        <input type="checkbox" id="ch2" name="ch1" value="ch1">
+        <label for="ch2"> categery 1 </label><br>
+        <input type="checkbox" id="ch3" name="ch1" value="ch1">
+        <label for="ch3"> categery 1 </label><br>
+        <input type="checkbox" id="ch4" name="ch1" value="ch1">
+        <label for="ch4"> categery 1 </label><br>
+      </div><!-- checkboxs -->
+    </div> <!-- left-pannel -->
+    <div class="right-pannel">
+      <div class="course">
+        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/08/33f720502a11e59e72391aa537f5c9/pythonlearn_thumbnail_1x1.png?auto=format%2Ccompress&dpr=1" alt="dr" />
+        <div class="c-title">
+          <h6>Course title</h6>
+          <lable class="hour">20 hourse</lable>
+          <lable class="review">4 review </lable>
+        </div>
+      </div><!-- course -->
+      <div class="course">
+        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/08/33f720502a11e59e72391aa537f5c9/pythonlearn_thumbnail_1x1.png?auto=format%2Ccompress&dpr=1" alt="dr" />
+        <div class="c-title">
+          <h6>Course title</h6>
+          <lable class="hour">20 hourse</lable>
+          <lable class="review">4 review </lable>
+        </div>
+      </div><!-- course -->
+      <div class="course">
+        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/08/33f720502a11e59e72391aa537f5c9/pythonlearn_thumbnail_1x1.png?auto=format%2Ccompress&dpr=1" alt="dr" />
+        <div class="c-title">
+          <h6>Course title</h6>
+          <lable class="hour">20 hourse</lable>
+          <lable class="review">4 review </lable>
+        </div>
+      </div><!-- course -->
+
+      <div class="course">
+        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/08/33f720502a11e59e72391aa537f5c9/pythonlearn_thumbnail_1x1.png?auto=format%2Ccompress&dpr=1" alt="dr" />
+        <div class="c-title">
+          <h6>Course title</h6>
+          <lable class="hour">20 hourse</lable>
+          <lable class="review">4 review </lable>
+        </div>
+      </div><!-- course -->
+
+      <div class="course">
+        <img src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/08/33f720502a11e59e72391aa537f5c9/pythonlearn_thumbnail_1x1.png?auto=format%2Ccompress&dpr=1" alt="dr" />
+        <div class="c-title">
+          <h6>Course title</h6>
+          <lable class="hour">20 hourse</lable>
+          <lable class="review">4 review </lable>
+        </div>
+      </div><!-- course -->
+
+    </div> <!-- right-pannel -->
+  </div> <!-- container -->
+</body>
+<script>
+  $(document).ready(function(){
+  $('.').click(() => {
+    var vals="";
+    $('.:checked').each(() => {
+      vals+=$(this).val()+","
+    });
+    $('#').val(vals);
+  });
+});
+</script>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+  <link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+  <link rel="stylesheet" href="{% static 'css/category.css' %}?{% now 'U' %}">
+  <script src="{% static '' %}js/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+<div class="cont">
+    {% for mc in my_course %}
+    <div class="course">
+        <a href="{% url 'course' mc.course.id %}"><img src="{{mc.course.cover.url}}" alt=""/></a>
+        <div class="c-title">
+            <a href="{% url 'course' mc.course.id %}">{% if mc.course.title %} <h6>{{mc.course.title}}</h6>{% endif %}</a>
+            <a href="{% url 'course' mc.course.id %}">
+                <div class="hr-rvw">
+                    {% if mc.course.duration %}
+                    <label class="hour">{{mc.course.duration}}</label>
+                    {% endif %}
+
+                </div>
+            </a>
+        </div>
+    </div><!-- course -->
+    {% endfor %}
+</div>
+{% endblock %}

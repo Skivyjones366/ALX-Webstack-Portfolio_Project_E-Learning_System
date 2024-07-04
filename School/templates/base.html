@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?{% now 'U' %}">
+    <script src="{% static '' %}js/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+{% include 'nav.html' %}
+
+<div class="login-form">
+    {% block title %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

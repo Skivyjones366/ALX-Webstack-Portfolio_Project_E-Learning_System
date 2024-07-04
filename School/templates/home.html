@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/category.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}?{% now 'U' %}">
+<script src="{% static '' %}js/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+<div class="search">
+    <form action="" method="post">{% csrf_token %}
+        <input class="search" type="text" name="search-q" placeholder="Search by Any">
+        <button class="search" type="submit" ><img src="{% static 'img/search.svg' %}"></button>
+    </form>
+</div>
+<div class="cont">
+    {% for c in courses %}
+    <div class="course">
+        <a href="{% url 'courseDetail' c.id %}"><img src="{{c.cover.url}}" alt=""/></a>
+        <div class="c-title">
+            <a href="{% url 'courseDetail' c.id %}">{% if c.title %} <h6>{{c.title}}</h6>{% endif %}</a>
+            <a href="{% url 'courseDetail' c.id %}">
+                <div class="hr-rvw">
+                    {% if c.duration %}
+                    <label class="hour">{{c.duration}}</label>
+                    {% endif %}
+
+                </div>
+            </a>
+        </div>
+    </div><!-- course -->
+    {% endfor %}
+</div>
+{% endblock %}

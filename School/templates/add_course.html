@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+  <link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+  <link rel="stylesheet" href="{% static 'css/add.css' %}?{% now 'U' %}">
+  <script src="{% static '' %}js/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+<div class="form-cntr">
+    <h3>{{title}}</h3>
+    <form action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+        {{form.media}}
+        {{form|crispy}}
+        <input class="submit" type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}

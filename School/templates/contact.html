@@ -1,0 +1,62 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} {{title}} {% endblock %}
+
+{% block head  %}
+<link rel="stylesheet" href="{% static 'css/nav.css' %}?{% now 'U' %}">
+<link rel="stylesheet" href="{% static 'css/contact.css' %}?{% now 'U' %}">
+<script src="{% static '' %}js/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block header %} {% include 'nav.html' %} {% endblock %}
+
+{% block content %}
+<div class="contacts">
+    <h1>Contact</h1>
+    <div class="bio">
+        <lable>Bio</lable>
+        <p>I am Mikiyas Adere, ALX student.
+            <br> For Webstack - Portfolio Project I try to develop video-based e-learning system. <br> I have BA degree
+            in Logistics and Supply Chain Management but since I love computing I start studding Computer science. A
+            good friend suggests me to join ALX school since he knows the interest I have in programming. ALX is the
+            best online school I have ever seen, and they approach is good for student who want to know the software
+            engineering environment and have a time to invest. <br> This is my third project on Django web framework. My
+            first project was on database management system for our Sunday school. It will register all students, export
+            and import list of students with their filled data, generate ID in PDF format, count with specified entity
+            and generate reports and other functionality. The second project was for foundation final project of ALX
+            foundation program. I try to develop web based online library system and all detail information including
+            with source code is available in github, just click <a
+                    href="https://github.com/MikiyasA/Online_Library-ALX_Foundation_Portfolio_Project/blob/main/library/templates/about.html/"
+                    target="_blank">hear</a></p>
+    </div>
+    <div class="contact-list">
+        <div class="cont">
+            <img src="{% static 'img/man.svg' %}" width="30px" alt=""/>
+            <lable>Mikiyas Adere</lable>
+        </div>
+        <div class="cont">
+            <img src="{% static 'img/phone.svg' %}" width="30px" alt=""/>
+            <lable>+251 92 16 2566</lable>
+        </div>
+        <div class="cont">
+            <img src="{% static 'img/email.svg' %}" width="30px" alt=""/>
+            <lable>Mikiyasad86@gmail.com</lable>
+        </div>
+        <div class="cont">
+            <img src="{% static 'img/whatsapp.svg' %}" width="30px" alt=""/>
+            <lable>+251 92 16 2566</lable>
+        </div>
+        <div class="cont">
+            <img src="{% static 'img/telegram.svg' %}" width="20px" alt=""/>
+            <lable>@Mikiyasa</lable>
+        </div>
+        <div class="cont">
+            <img src="{% static 'img/github.svg' %}" width="20px" alt=""/>
+            <lable>https://github.com/MikiyasA</lable>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

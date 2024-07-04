@@ -1,0 +1,57 @@
+{% load static %}
+
+
+<div>
+    <img class="logo" src="{% static 'img/logo1.png' %}" alt="logo"/>
+    <img id="id-menu" class="menu" src="{% static 'img/menu.svg' %}" alt="menu"/>
+    <nav>
+        <img id="id-close" class="close" src="{% static 'img/close.svg' %}" alt="close">
+        <div class="nav-container">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'allCourses' %}">Courses</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% if not request.user.is_authenticated %}
+                <li><a class="user" href="{% url 'auth_login' %}">Login</a></li>
+                {% else %}
+                <li class="li-account">Account</li>
+                <div class="account">
+
+                    <label style="margin-left: 15px;">Hi {% if request.user.first_name %} {{ request.user.first_name }} {% else %} {{ request.user.username }} {% endif %}</label>
+                    <li><a href="{% url 'myAccount' request.user.id %}">My Account</a></li>
+                    <li><a href="{% url 'myCourses' %}">My Courses</a></li>
+                    <li><a href="{% url 'auth_password_change' %}">Update Password</a></li>
+                    {% if request.user.is_superuser %} <!-- display admin nav if the user is only admin -->
+                    <li><a href="/admin/">Admin Site</a></li>
+                    {% endif %}
+                    <li><a class="user" href="{% url 'auth_logout' %}">Log Out</a></li>
+
+                    {% endif %}
+                </div>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+<!-- javascript to open and close nav bar in mobile view -->
+<script>
+    const menuBtn = document.getElementById('id-menu')
+          nav = document.querySelector('nav')
+          closeBtn = document.getElementById('id-close');
+
+    menuBtn.addEventListener('click', () => {
+            nav.classList.add('menu-btn');
+        })
+
+    closeBtn.addEventListener('click', () => {
+            nav.classList.remove('menu-btn');
+        })
+</script>
+<script>
+$(document).ready(function(){
+    $('.li-account').click(() => {
+        $('.account').slideToggle("fast");
+    });
+});
+</script>
